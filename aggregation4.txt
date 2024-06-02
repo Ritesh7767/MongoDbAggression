@@ -1,0 +1,46 @@
+Write Mongo query to retrieve documents from the orders in ascending order by total.
+Ans :- db.orders.aggregate([{$sort : {total : 1}}])
+
+Write Mongo query to retrieve the oldest paymentMethod from the payments collection as "_id".
+Ans :- db.payments.aggregate([{$addFields : {date : {$toDate : "$payment_date"}}}, {$group : {_id : "$paymentMethod", date : {$min : "$date"}}}, {$sort : {date : 1}}, {$limit : 1}])
+
+Write Mongo query to retrieve the recent paymentMethod from the payments collection as "_id".
+Ans :- db.payment.aggregate([{$addFields : {date : {$toDate : "$payment_date"}}}, {$group : {_id : "$paymentMethod", date : {$max : "$date"}}}, {$sort : {date : -1}}, {$limit : 1}])
+
+Write Mongo query to retrieve 2nd and 3rd buyers from the buyers collection.
+Ans :- db.buyers.aggregate([{$skip : 1}, {$limit : 2}])
+
+Write Mongo query to retrieve the less Expensive product from order_details.
+Ans :- db.buyers.aggregate([{$group : {_id : "$price", products : {$addToSet : "$product_id"}}}, {$sort : {_id : 1}}, {$limit : 1}])
+
+Write Mongo query to retrieve the most Expensive product from order_details.
+Ans :- db.buyers.aggregate([{$group : {_id : "$price", products : {$addToSet : "$product_id"}}}, {$sort : {_id : -1}}, {$limit : -1}])
+
+Write Mongo query to retrieve the first order from the orders as per the order_date.
+Ans :- db.buyers.aggregate([{$addFields : {date : {$toDate : "$order_date"}}}, {$group : {_id : "$date", orders : {$addToSet : "$_id"}}}, {$sort : {date : 1}}, {$limit : 1}])
+
+Write Mongo query to retrieve the last 3 orders from the orders collection who have less total amount.
+Ans :- 
+
+Write Mongo query to retrieve the most recent shipped order from the orders collection.
+Ans :- 
+
+Write Mongo query to get the total revenue from all orders
+Ans :- 
+
+Write Mongo query to retrieve all the orders that shipped before 2022-05-26
+Ans :- 
+
+Write Mongo query to find the maximum price as maxPrice of products and their names as name for each category.
+Ans :- 
+
+Write Mongo query to find Most used payment Method as paymentMethod and the number of time it is used as count.
+Ans :- 
+
+Write Mongo query to find the total count of orders by status.
+Ans :- 
+
+Write Mongo query to retrieve the orders grouped by customer_id with the max total
+Ans :- 
+
+Write Mongo query to retrieve the orders grouped by customer_id with the average total.Ans :- 
